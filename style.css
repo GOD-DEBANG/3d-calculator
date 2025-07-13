@@ -1,0 +1,131 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at 20% 20%, #1b2735, #090a0f);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  perspective: 1000px;
+  overflow: hidden;
+  animation: floatBackground 30s infinite alternate;
+}
+
+@keyframes floatBackground {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: repeating-radial-gradient(circle, rgba(255,255,255,0.03) 0 2px, transparent 2px 40px);
+  animation: rotateGrid 60s linear infinite;
+  z-index: -1;
+  transform-origin: center;
+}
+
+@keyframes rotateGrid {
+  0% { transform: rotate(0deg) scale(1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+.calculator {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+  backdrop-filter: blur(20px);
+  padding: 30px;
+  border-radius: 25px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6), inset 0 0 20px rgba(255,255,255,0.05);
+  width: 420px;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+
+.calculator:hover {
+  transform: rotateY(5deg) rotateX(5deg) scale(1.01);
+}
+
+.display {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: right;
+  font-size: 2.2rem;
+  color: #00ffcc;
+  margin-bottom: 20px;
+  min-height: 50px;
+  overflow-x: auto;
+  box-shadow: inset 0 0 5px #00ffcc44;
+}
+
+.history {
+  background: rgba(0, 0, 0, 0.2);
+  color: #ccc;
+  font-size: 0.9rem;
+  max-height: 100px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+button {
+  padding: 18px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.07);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+button:hover::before {
+  left: 100%;
+}
+
+button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.05);
+}
+
+.equal {
+  background-color: #00c853;
+  color: #fff;
+}
+
+.equal:hover {
+  background-color: #00b342;
+}
+
+.secondary {
+  background-color: rgba(0, 150, 255, 0.4);
+}
